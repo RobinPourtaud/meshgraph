@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 data/3Dmodels
-*.zip
+models-OBJ.zip
