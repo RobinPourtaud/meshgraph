@@ -130,3 +130,5 @@ dmypy.json
 
 data/3Dmodels
 models-OBJ.zip
+
+*.pt
