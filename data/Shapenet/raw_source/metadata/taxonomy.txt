@@ -1,0 +1,181 @@
+# Category and subcategories (extended from furniture categories)
+#
+# Sculptures, Billboards and WallArt can depict other categories but should NOT be categorized
+# as the base categories themselves. Instead, there should be a "depicts" attribute which points to
+# the base category
+#
+# for storage
+Trundle
+ChestOfDrawers  Nightstand, Dresser, DresserWithMirror
+Closet Wardrobe, Armoire
+Rack    WineRack, CoatRack, PotRack
+Cabinet Sideboard, CurioCabinet
+Bookcase 1Shelves, 2Shelves, 3Shelves, 4Shelves, 5Shelves, 6Shelves, 7Shelves
+FileCabinet
+MediaStorage    MediaChest, TvStand, WallUnit
+Credenza
+# for sleeping
+Bed LoftBed, CanopyBed, PosterBed, KingBed, QueenBed, QueenBedWithNightstand, DoubleBed, SingleBed, ChildBed, Cradle
+Mattress
+Headboard
+# for sitting
+Couch   Sectional, Sleeper, Futon, Loveseat
+Bench
+Stool   Barstool
+Chair   AccentChair, OfficeChair, OfficeSideChair, SideChair, Recliner, Chaise, ChairWithOttoman, KneelingChair, BeanBag
+Ottoman
+# for putting things on / sitting in front of
+Counter BarCounter
+Desk	LDesk
+Table   AccentTable, CoffeeTable, EndTable, DiningTable, BarTable, RoundTable, DraftingTable, OutdoorTable
+SupportFurniture    Table, Desk
+Pedestal
+# other
+Fireplace
+# accessories
+Ladder
+Lamp    CeilingLamp, WallLamp, TableDeskLamp, FloorLamp, LampPost
+TableDeskLamp   TableLamp, DeskLamp
+Clock   WallClock, TableClock, StandingClock
+Rug
+Mirror
+Pillow
+Throw
+ComforterSet
+TV
+Vase
+WallArt	Painting, Poster, Picture
+Blind
+Curtain
+Sink
+Animal Bear, Bird, Cat, Dog, Cow, Butterfly, Elephant, Fish, Horse, Rabbit, Sheep, Giraffe
+FoodItem FruitBowl, CerealBox, Chocolate, Cookie, MilkCarton, Pizza, Donut, Fruit, Sandwich, Apple, Orange, Carrot
+Battery   AAABattery, AABattery
+Airplane
+Bag Backpack, Purse
+Ball
+Basket
+Bathtub
+Bicycle
+Bidet
+Board
+Book
+Books
+Booth
+Bowl
+Bucket
+Bus
+Cabling
+Cage
+Calculator
+Camera DSLRCamera, WebCam
+CanOpener
+Candle
+Canister
+Cap
+Car
+Cassette
+Coaster
+Coin
+Computer Desktop, Laptop
+ComputerMouse
+Controller
+Copier
+DecorativeAccessory
+DiscCase
+Door
+DrinkingUtensil Teacup, WineGlass, Cup, Mug
+Easel
+Eraser
+Fan CeilingFan
+Faucet
+Fork
+GameTable
+Glasses
+Guitar
+GuitarStand
+Gun
+Hammer
+Hanger
+Harp
+Hat
+Headphones
+Helicopter
+Kettle
+Keyboard
+Knife
+Lectern
+Letter
+LightSwitch
+Magnet
+Marker
+MediaDiscs
+MediaPlayer
+Microwave
+Monitor
+Motorcycle
+MousePad
+Notepad
+Oven
+OvenTop
+Pan
+Paper
+PaperBox
+PaperClip
+Pen
+Pencil
+PersonStanding
+Phone  Telephone, CellPhone
+Phonebooth
+Piano
+PianoKeyboard
+PictureFrame
+PillBottle
+Plant PottedPlant
+Plate
+Plotter
+PowerSocket
+PowerStrip
+Printer
+Radio
+Refrigerator
+Ring
+RubiksCube
+Scissors
+ScrewDriver
+Shampoo
+Ship
+Shirt
+Shoes
+Shower
+Showerhead
+SoapBar
+SodaCan
+Speaker
+Spoon
+Stapler
+Statue
+Suitcase
+Sword
+Tank
+Teapot
+Thermostat
+TissueBox
+Toilet
+ToiletPaper
+ToyFigure
+TrashBin
+Truck
+USBStick
+Umbrella
+Vanity
+Vase
+VideoGameConsole Xbox, Xbox360, Wii, PS, PS2, PS3, Gamecube
+VideoGameController PSP, NintendoDS
+Violin
+WallArt
+Wallet
+Washer
+Watch
+Window
+Bottle WineBottle, DrinkBottle, BeerBottle

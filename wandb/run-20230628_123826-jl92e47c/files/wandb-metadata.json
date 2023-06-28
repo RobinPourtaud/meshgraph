@@ -1,0 +1,113 @@
+{
+    "os": "Linux-5.15.0-48-generic-x86_64-with-glibc2.31",
+    "python": "3.9.16",
+    "heartbeatAt": "2023-06-28T03:38:26.785766",
+    "startedAt": "2023-06-28T03:38:26.175778",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/robin/meshgraph/mnistData.py",
+    "codePath": "mnistData.py",
+    "git": {
+        "remote": "https://github.com/RobinPourtaud/meshgraph",
+        "commit": "e87e5e8622073121f9ca463c5e27a4cf65872926"
+    },
+    "email": "robin@pourtaud.dev",
+    "root": "/home/robin/meshgraph",
+    "host": "namu",
+    "username": "robin",
+    "executable": "/home/robin/miniconda3/envs/pytorchenv/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3216.7762500000003,
+        "min": 1200.0,
+        "max": 4000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3826.874,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 4000.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1200.023,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3500.0,
+            "min": 1200.0,
+            "max": 4000.0
+        }
+    ],
+    "disk": {
+        "total": 280.5496139526367,
+        "used": 116.56644439697266
+    },
+    "gpu": "NVIDIA GeForce GTX 1080 Ti",
+    "gpu_count": 3,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce GTX 1080 Ti",
+            "memory_total": 11811160064
+        }
+    ],
+    "memory": {
+        "total": 93.98828125
+    }
+}

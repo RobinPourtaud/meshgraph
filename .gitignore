@@ -131,4 +131,7 @@ dmypy.json
 data/3Dmodels
 models-OBJ.zip
 
+data/raw_source/3Dmodels
+
+
 *.pt
