@@ -1,0 +1,31 @@
+program: train.py
+name: autoencoder
+dataset: MNISTSuperpixels
+data_path: ../data/MNISTSuperpixels
+model_path: ../models/autoencoder
+devices: 3
+num_workers: 1
+metric:
+  name: train_loss
+  goal: minimize
+method: grid
+parameters:
+  epochs: 20
+  batch_size: 64
+  learning_rate:
+    values: [0.001, 0.01, 0.1]
+  optimizer:
+    values: ["adam", "sgd"]
+model:
+  Encoder:
+    layers:
+      values: [GATConv, GCNConv]
+    input_size: 784
+    hidden_size: 128
+    output_size: 64
+  Decoder:
+    input_size: 64
+    hidden_size: 128
+    output_size: 784
+  AutoEncoder:
+    values: [VGAE, ARGA, ARGVA]

@@ -1,0 +1,6 @@
+program: generate.py
+name: autoencoder
+dataset: MNISTSuperpixels
+data_path: ../data/MNISTSuperpixels
+model_path: ../models/autoencoder
+num_samples: 10
