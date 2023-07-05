@@ -10,7 +10,7 @@ The loading is done from torch_geometric and then converted to a pytorch lighnin
 # imports
 from torch_geometric.data import InMemoryDataset
 import torch
-
+import os
 def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
     """ Load the MNIST Superpixels dataset from torch_geometric
 
@@ -47,6 +47,10 @@ def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
         data = T.RemoveIsolatedNodes()(data)
         return data
 
+    if os.path.exists(conf["data_path"] + "/raw/MNISTSuperpixels.zip"):
+        print("Downloading the data...")
+        os.system("wget https://data.pyg.org/datasets/MNISTSuperpixels.zip -P " + conf["data_path"] + "/raw")
+
     return MNISTSuperpixels(conf["data_path"], True, pre_transform=pre_transform)
 
 
@@ -54,7 +58,6 @@ def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
 
 def load_ShapeNet(conf) -> InMemoryDataset:
         # imports
-    import os
 
     import pandas as pd
     class ShapeNet(InMemoryDataset):
