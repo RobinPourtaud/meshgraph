@@ -1,6 +1,10 @@
-program: generate.py
-name: autoencoder
+program: generate
+method: grid
+name: autoencoderMnistSuperpixelsGeneration
+description: Generation test for autoencoder on MNISTSuperpixels
 dataset: MNISTSuperpixels
-data_path: ../data/MNISTSuperpixels
-model_path: ../models/autoencoder
-num_samples: 10
+data_path: data/MNISTSuperpixels
+checkpoint_folder_path: autoencoder
+generateNumber: 10
+model_paths: ["models/autoencoder/hopeful-sweep-258.pt"]
+probability_of_edge: 0.5

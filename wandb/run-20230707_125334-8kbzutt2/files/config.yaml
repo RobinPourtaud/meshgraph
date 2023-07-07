@@ -1,0 +1,67 @@
+wandb_version: 1
+
+program:
+  desc: null
+  value: generate
+method:
+  desc: null
+  value: grid
+name:
+  desc: null
+  value: autoencoderMnistSuperpixelsGeneration
+description:
+  desc: null
+  value: Generation test for autoencoder on MNISTSuperpixels
+dataset:
+  desc: null
+  value: MNISTSuperpixels
+data_path:
+  desc: null
+  value: data/MNISTSuperpixels
+checkpoint_folder_path:
+  desc: null
+  value: autoencoder
+generateNumber:
+  desc: null
+  value: 10
+model_paths:
+  desc: null
+  value:
+  - models/autoencoder/woven-sweep-129.pt
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.16
+    cli_version: 0.15.4
+    framework: huggingface
+    huggingface_version: 4.31.0.dev0
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1688702014.824274
+    t:
+      1:
+      - 1
+      - 9
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      - 77
+      2:
+      - 1
+      - 9
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      - 77
+      3:
+      - 16
+      - 23
+      4: 3.9.16
+      5: 0.15.4
+      6: 4.31.0.dev0
+      8:
+      - 5

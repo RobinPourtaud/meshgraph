@@ -1,0 +1,22 @@
+wandb_version: 1
+
+batch_size:
+  value: 128
+devices:
+  value: 1
+encoder_hidden_size:
+  value: 64
+encoder_input_size:
+  value: -1
+encoder_layer_name:
+  value: GATConv
+encoder_output_size:
+  value: 8
+epochs:
+  value: 10
+lr:
+  value: 0.1
+num_workers:
+  value: 1
+optimizer:
+  value: adam

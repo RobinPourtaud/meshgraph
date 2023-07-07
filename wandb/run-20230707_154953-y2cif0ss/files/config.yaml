@@ -1,0 +1,154 @@
+wandb_version: 1
+
+batch_size:
+  desc: null
+  value: 128
+devices:
+  desc: null
+  value: 1
+encoder_hidden_size:
+  desc: null
+  value: 64
+encoder_input_size:
+  desc: null
+  value: -1
+encoder_layer_name:
+  desc: null
+  value: GATConv
+encoder_output_size:
+  desc: null
+  value: 64
+epochs:
+  desc: null
+  value: 10
+lr:
+  desc: null
+  value: 0.1
+num_workers:
+  desc: null
+  value: 1
+optimizer:
+  desc: null
+  value: sgd
+program:
+  desc: null
+  value: train
+method:
+  desc: null
+  value: grid
+name:
+  desc: null
+  value: autoencoderMnistSuperpixels
+description:
+  desc: null
+  value: Train an autoencoder on MNISTSuperpixels
+dataset:
+  desc: null
+  value: MNISTSuperpixels
+data_path:
+  desc: null
+  value: data/MNISTSuperpixels
+model_path:
+  desc: null
+  value: models/autoencoder
+metric:
+  desc: null
+  value:
+    name: train_loss
+    goal: minimize
+parameters:
+  desc: null
+  value:
+    lr:
+      values:
+      - 0.1
+      - 0.01
+      - 0.001
+    optimizer:
+      values:
+      - adam
+      - sgd
+    epochs:
+      values:
+      - 10
+    batch_size:
+      values:
+      - 32
+      - 64
+      - 128
+    devices:
+      values:
+      - 1
+    num_workers:
+      values:
+      - 1
+    encoder_layer_name:
+      values:
+      - GATConv
+      - GCNConv
+    encoder_input_size:
+      values:
+      - -1
+    encoder_hidden_size:
+      values:
+      - 64
+      - 128
+    encoder_output_size:
+      values:
+      - 4
+      - 8
+      - 16
+      - 32
+      - 64
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.16
+    cli_version: 0.15.4
+    framework: huggingface
+    huggingface_version: 4.31.0.dev0
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1688712593.150288
+    t:
+      1:
+      - 1
+      - 9
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      - 77
+      2:
+      - 1
+      - 9
+      - 11
+      - 41
+      - 49
+      - 55
+      - 71
+      - 77
+      3:
+      - 2
+      - 5
+      - 7
+      - 16
+      - 23
+      4: 3.9.16
+      5: 0.15.4
+      6: 4.31.0.dev0
+      8:
+      - 5
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    - 1: train_loss
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1

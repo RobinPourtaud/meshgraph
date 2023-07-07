@@ -1,3 +1,4 @@
 project: MeshGen
-mode: train
+mode: generate
 experiment_name: autoencoder
+warnings: False

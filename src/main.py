@@ -1,7 +1,8 @@
 import argparse
 import yaml
 from experiments.autoencoder import train
-
+from experiments.autoencoder import generate
+from utils.dataset import load_data
 CONFIG_FILE_PATH = 'configs/main.yaml'
 
 # Command line argument parser
@@ -16,6 +17,10 @@ args = parser.parse_args()
 # Parse the main configuration file
 with open(CONFIG_FILE_PATH, 'r') as file:
     config_main = yaml.safe_load(file)
+
+if not config_main['warnings']:
+    import warnings
+    warnings.filterwarnings("ignore")
 
 # If arguments are not passed, take from config
 if args.experiment is None:
@@ -46,12 +51,11 @@ supported_experiments = ["autoencoder", "clip", "meshGenerator"]
 
 # Check if the provided experiment is supported
 if args.experiment in supported_experiments:
-    
+    data = load_data(config_experiment["dataset"], config_experiment)
     if args.mode == "train":
-        # Call the train function
-        train(config_experiment)
+        train(data, config_experiment)
     elif args.mode == "generate":
-        raise NotImplementedError("Mode generate is not implemented yet.")
+        generate(data, config_experiment)
     else:
         raise ValueError(f"Mode {args.mode} is not supported for experiment {args.experiment}.")
 else:
