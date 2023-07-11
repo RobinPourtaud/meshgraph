@@ -1,0 +1,33 @@
+program: train
+method: grid
+name: autoencoderMnistSuperpixels
+description: Train an autoencoder on MNISTSuperpixels
+dataset: MNISTSuperpixels
+data_path: data/MNISTSuperpixels
+model_path: models/autoencoder
+open_ai_key:
+metric:
+  name: train_loss
+  goal: minimize
+
+parameters:
+  lr:
+    values: [0.01]
+  optimizer:
+    values: ["adam"]
+  epochs:
+    values: [100]
+  batch_size:
+    values: [128]
+  devices:
+    values: [1]
+  num_workers:
+    values: [1]
+  encoder_layer_name:
+    values: ["GATConv"]
+  encoder_input_size: 
+    values : [-1]
+  encoder_hidden_size:
+    values: [64,128]
+  encoder_output_size: 
+    values: [16, 32]

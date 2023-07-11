@@ -5,6 +5,6 @@ description: Generation test for autoencoder on MNISTSuperpixels
 dataset: MNISTSuperpixels
 data_path: data/MNISTSuperpixels
 checkpoint_folder_path: autoencoder
-generateNumber: 10
-model_paths: ["models/autoencoder/hopeful-sweep-258.pt"]
-probability_of_edge: 0.5
+generateNumber: 30
+model_paths: ["models/autoencoder/divine-sweep-1.pt"]
+probability_of_edge: 0.65

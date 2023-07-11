@@ -138,7 +138,6 @@ def generate(data, config):
             binary_adjacency_matrix = (probabilities_of_edges > config["probability_of_edge"]).float()
             # set diagonal to 0
             binary_adjacency_matrix = binary_adjacency_matrix - torch.diag(torch.diag(binary_adjacency_matrix))
-            print(binary_adjacency_matrix)
             
             # plot and send to wandb
             fig, (ax0, ax1, ax2) = plt.subplots(1, 3)
@@ -151,9 +150,13 @@ def generate(data, config):
             # plot the image on the first axis
             img = np.array(mnist[graphId][0])
             ax0.imshow(img, cmap="gray")
-            nx.draw(GOri, pos=posOri, ax=ax1)
-            nx.draw(nx.from_numpy_array(binary_adjacency_matrix.cpu().detach().numpy()), ax=ax2, pos=posOri)
-            # log image to wandb
+            nx.draw_networkx_edges(GOri, pos=posOri, ax=ax1, width=3)
+
+            G = nx.from_numpy_array(binary_adjacency_matrix.cpu().detach().numpy())
+
+            # draw only edges for the second graph
+            nx.draw_networkx_edges(G, pos=posOri, ax=ax2, width=3)
+
             wandb.log({"generated_graph": wandb.Image(fig)})
             plt.close(fig)
     print("Done generating graphs")
