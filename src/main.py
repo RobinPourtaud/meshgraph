@@ -1,7 +1,6 @@
 import argparse
 import yaml
-from experiments.autoencoder import train
-from experiments.autoencoder import generate
+
 from utils.dataset import load_data
 CONFIG_FILE_PATH = 'configs/main.yaml'
 
@@ -47,18 +46,27 @@ except FileNotFoundError:
 
 # Depending on the mode and the experiment name, execute the appropriate code
 # List of supported experiments
-supported_experiments = ["autoencoder", "clip", "meshGenerator"]
-
-# Check if the provided experiment is supported
-if args.experiment in supported_experiments:
-    data = load_data(config_experiment["dataset"], config_experiment)
-    if args.mode == "train":
-        train(data, config_experiment)
-    elif args.mode == "generate":
-        generate(data, config_experiment)
-    else:
-        raise ValueError(f"Mode {args.mode} is not supported for experiment {args.experiment}.")
+if args.experiment == "autoencoder":
+    from experiments.autoencoder import train
+    from experiments.autoencoder import generate
+elif args.experiment == "clip":
+    from experiments.clip import train
+    from experiments.clip import generate
+elif args.experiment == "meshGenerator":
+    from experiments.clip import train
+    from experiments.generator import generate
 else:
     raise ValueError(f"Experiment {args.experiment} is not supported.")
 
-    
+
+# Check if the provided experiment is supported
+if not args.experiment == "meshGenerator":
+    data = load_data(config_experiment["dataset"], config_experiment)
+else:
+    data = None
+if args.mode == "train":
+    train(data, config_experiment)
+elif args.mode == "generate":
+    generate(data, config_experiment)
+else:
+    raise ValueError(f"Mode {args.mode} is not supported for experiment {args.experiment}.")

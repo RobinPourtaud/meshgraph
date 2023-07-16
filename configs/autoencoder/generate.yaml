@@ -1,10 +1,12 @@
 program: generate
 method: grid
-name: autoencoderMnistSuperpixelsGeneration
-description: Generation test for autoencoder on MNISTSuperpixels
+name: autoencoderMNIST
+description: Generation test for autoencoder on MNIST
 dataset: MNISTSuperpixels
-data_path: data/MNISTSuperpixels
+data_path: data/MNISTSuperpixels/
 checkpoint_folder_path: autoencoder
-generateNumber: 30
+generateNumber: 60
 model_paths: ["models/autoencoder/divine-sweep-1.pt"]
-probability_of_edge: 0.65
+probability_of_edge: 0.4
+save_emb: data/embeddingMNIST/img/
+plot : False

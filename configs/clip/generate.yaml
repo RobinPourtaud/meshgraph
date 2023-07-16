@@ -1,0 +1,3 @@
+dataset: Embedding
+device_clip: cuda:0
+data_path: data/embeddingMNIST/img

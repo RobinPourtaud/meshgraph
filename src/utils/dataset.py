@@ -29,11 +29,76 @@ def load_data(dataset : str, conf : dict) -> InMemoryDataset:
     print("Loading dataset {}".format(dataset))
     if dataset == "MNISTSuperpixels":
         return load_MNISTSuperpixels(conf)
-    elif dataset == "ShapeNet":
+    elif dataset == "Shapenet":
         return load_ShapeNet(conf)
+    elif dataset == "Embedding":
+        return load_Embedding(conf)
     else:
         raise NotImplementedError("The dataset {} is not implemented".format(dataset))
+def load_Embedding(conf : dict) -> InMemoryDataset:
+    import clip 
+    from torch.utils.data import Dataset
+    import random
+    import re
+
+    text = {
+        0: ["A photo of a zero", "nil", "nonexistent", "0", "null", "nought", "zilch", "zeroth", "cipher", "naught"],
+        1: ["A photo of the number one", "singular", "individual", "1", "initial", "unity", "sole", "primary", "uno", "first"],
+        2: ["A snapshot of a two", "dual", "couple", "2", "pair", "double", "duo", "binary", "twice", "second"],
+        3: ["A picture of a three", "triple", "triplet", "3", "trio", "third", "threesome", "tertiary", "trifecta", "trilogy"],
+        4: ["An image of a four", "quadruple", "quartet", "4", "quad", "fourth", "tetrad", "quadruplet", "quartile", "quadrant"],
+        5: ["A photo of a five", "quintuple", "quintet", "5", "pentad", "fifth", "quinary", "quint", "pentagon", "pentacle"],
+        6: ["A shot of a six", "sextuple", "sextet", "6", "hexad", "sixth", "senary", "hexagon", "half a dozen", "hex"],
+        7: ["A picture of a seven", "septuple", "septet", "7", "heptad", "seventh", "septenary", "heptagon", "seventh heaven", "week"],
+        8: ["A photo of an eight", "octuple", "octet", "8", "octad", "eighth", "octonary", "octagon", "octave", "eightfold"],
+        9: ["An image of a nine", "nonuple", "nonet", "9", "nonad", "ninth", "nonary", "ennead", "novem", "ninefold"]
+    }
     
+    embeddings_dict = {}
+    list_files = os.listdir(conf["data_path"])
+    for file in list_files:
+        # Extract the key and digit using regular expressions
+        key = int(re.search(r'(\d+)_tensor', file).group(1))
+        digit = int(re.search(r'\[(\d+)\]', file).group(1))
+        # Choose a random sentence from the corresponding list in the dictionary
+        sentence = random.choice(text[digit])
+        # Add to the dictionary with key as the first number
+        embeddings_dict[key] = sentence
+
+    # Create a list of sentences based on the key order
+    list_txt = [embeddings_dict[key] for key in sorted(embeddings_dict.keys())]
+    _, preprocess = clip.load("ViT-B/32",device= conf["device_clip"], jit=False)
+
+    target_size = [16, 16]
+    from torchvision import transforms
+    from torch.functional import F
+    from PIL import Image
+
+    class graph_title_dataset(Dataset):
+        def __init__(self, list_graph_path,list_txt, text):
+            self.graph_path = [conf["data_path"] + "/" + file for file in list_graph_path]
+            self.title = clip.tokenize(list_txt) 
+            self.text = text
+
+        def __len__(self):
+            return len(self.title)
+
+        def __getitem__(self, idx):
+            image = torch.load(self.graph_path[idx])
+            im = transforms.ToPILImage()(image).convert("RGB")
+            image = preprocess(im)
+            title = self.title[idx]
+            return image, title
+        
+        def get_classes(self):
+            l = []
+            for txt in self.text.values():
+                l.extend(txt)
+            return l
+        
+        
+        
+    return graph_title_dataset(list_files,list_txt, text)
     
 def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
     """ Load the MNIST Superpixels dataset from torch_geometric
@@ -115,9 +180,6 @@ def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
             data.edge_index = torch.stack(torch.nonzero(mst, as_tuple=True))
             
         return data
-        
-
-
 
     if not os.path.exists(conf["data_path"] + "/raw/MNISTSuperpixels.zip"):
         print("Downloading the data...")
@@ -128,65 +190,15 @@ def load_MNISTSuperpixels(conf : dict) -> InMemoryDataset:
 
 
 
-def load_ShapeNet(conf) -> InMemoryDataset:
-        # imports
-
+def load_ShapeNet(conf : dict) -> InMemoryDataset:
     import pandas as pd
-    class ShapeNet(InMemoryDataset):
-        def __init__(self, root, transform=None, pre_transform=None):
-            super(ShapeNet, self).__init__(root, transform, pre_transform)
-            # Load descriptions from CSV
-            self.description_df = pd.read_csv('data/processed/description.csv')
-            # Create a mapping of categories to integers
-            self.category_to_int = {category: i for i, category in enumerate(self.description_df['subCategory'].unique())}
-
-            # Load descriptions from CSV
-            
-
-        @property
-        def raw_file_names(self):
-            # Get all file names in the directory with '.pt' extension
-            all_files = [os.path.splitext(file)[0] for file in os.listdir(self.root) if file.endswith('.pt')]
-            
-            # Filter the list to only include files that are present in description_df
-            valid_files = [file for file in all_files if file in self.description_df['fileName'].values]
-            
-            return valid_files
-
-        @property
-        def processed_file_names(self):
-            return self.raw_file_names()
-
-        def download(self):
-            pass
-
-        def process(self):
-            pass
-
-        def len(self):
-            return len(self.raw_file_names)
-
-        def get(self, idx):
-            file = self.raw_file_names[idx]
-            data = torch.load(os.path.join(self.root, file))
-            
-            # Get label from description_df based on filename
-            label = self.description_df.loc[self.description_df['fileName'] == file, 'subCategory'].values[0]
-            
-            # Convert the label to an integer
-            label = self.category_to_int[label]
-            
-            # Add the label to the data object
-            data.y = torch.tensor([label])
-            
-            return data
-        
-    return ShapeNet(conf["data_path"])
-
-        
-
-
-
-
-
-
+    df = pd.read_csv('data/Shapenet/processed/completeToKeep.csv')
+    validId = df.where(df['y'] == "Chair").dropna()['fullId']
+    validFiles = [id + '.pt' for id in validId]
+    data_list = [torch.load(os.path.join(conf["data_path"], file)) for file in validFiles]
+    for data, id in zip(data_list, validId):
+        # keep only the first 3 dimensions
+        data.pos = data.x[:, :3]
+        data.x = data.pos
+        data.y = df.where(df['fullId'] == id).dropna()['yFull'].values[0]
+    return data_list

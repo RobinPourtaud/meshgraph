@@ -1,0 +1,4 @@
+textInput: "four"
+decoder: "default"
+device: "cuda:0"
+probabilities_of_edge: 0.7

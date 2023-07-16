@@ -1,9 +1,9 @@
 program: train
 method: grid
-name: autoencoderShapnet
-description: Train an autoencoder on MNISTSuperpixels
-dataset: MNISTSuperpixels
-data_path: data/MNISTSuperpixels
+name: autoencoderShapenet
+description: Train an autoencoder on Shapenet
+dataset: Shapenet
+data_path: data/Shapenet/raw/
 model_path: models/autoencoder
 metric:
   name: train_loss
@@ -11,22 +11,22 @@ metric:
 
 parameters:
   lr:
-    values: [0.01]
+    values: [0.001, 0.01, 0.1, 1.0]
   optimizer:
     values: ["adam"]
   epochs:
-    values: [100]
+    values: [10]
   batch_size:
-    values: [128]
+    values: [1]
   devices:
     values: [1]
   num_workers:
-    values: [1]
+    values: [1] 
   encoder_layer_name:
     values: ["GATConv"]
   encoder_input_size: 
     values : [-1]
   encoder_hidden_size:
-    values: [64,128]
+    values: [16,32,64]
   encoder_output_size: 
-    values: [16, 32]
+    values: [32,64,128]
